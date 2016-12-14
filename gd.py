@@ -12,25 +12,10 @@ for i in range (len(FoundLine)):
     if FoundLine[i] == '/':
         break
     FoundCondition += FoundLine[i]
-FoundCondition_list = FoundCondition.split(' ')
+for i in range(len(FoundCondition)):
+    if FoundCondition[i] == '$' and FoundCondition[i-1] != ' ' and i != 0:
+        FoundCondition = FoundCondition[0:i] + ' ' + FoundCondition[i:]
+    elif FoundCondition[i].isalpha() == True and FoundCondition[i+1].isalpha() == False and FoundCondition[i+1] not in [' ', '.'] and i != len(FoundCondition):
+        print('da')
+        FoundCondition = FoundCondition[0:i+1] + ' ' + FoundCondition[i+1:]
 print(FoundCondition)
-ReadyCondition = []
-for i in range (len(FoundCondition_list)):
-    if FoundCondition_list[i] == '':
-        FoundCondition_list.pop([i])
-for i in range (len(FoundCondition_list)):
-    check = 0
-    for j in range (len(FoundCondition_list[i])):
-        if FoundCondition_list[i][0] != '$' and FoundCondition_list[i][j] == '$':
-            for h in range (len(FoundCondition_list[i])):
-                if Found_Condition_list[i][h].isalpha() == False and Found_Condition_list[i][h] not in ['$', '.']:
-            check += 1
-    if check > 0:
-        if
-            Split = FoundCondition_list[i].split('$')
-            ReadyCondition.append(Split[0])
-            Split[1] = '$' + Split[1]
-            ReadyCondition.append(Split[1])
-    else:
-        ReadyCondition.append(FoundCondition_list[i])
-print(ReadyCondition)
